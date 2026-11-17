@@ -1,0 +1,10 @@
+# Fichiers générés et locaux : jamais dans le dépôt (aucune clé de signature ni chemin personnel)
+build/
+.gradle/
+local.properties
+*.jks
+*.p12
+*.keystore
+.idea/
+*.apk
+*.aab

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ShuPlay : lecteur audio et vidéo. Aucune donnée personnelle n'est envoyée ; Internet sert aux liens directs et au signal de présence SAWALI. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Lecture continue quand l'application passe en arrière-plan ou que l'écran s'éteint (service de premier plan de type « lecture média ») -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- Garde le processeur éveillé pendant la lecture écran éteint -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Notification de contrôle de la lecture (Android 13 et plus : l'utilisateur est interrogé) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/Theme.ShuPlay">
+
+        <!-- Fenêtre unique. singleTop : « Ouvrir avec ShuPlay » depuis un autre programme revient à CETTE fenêtre. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- « Ouvrir avec… » : fichiers audio et vidéo reçus d'un gestionnaire de fichiers, de WhatsApp, du navigateur… -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- Service de lecture : garde le lecteur en vie, affiche la notification de contrôle et répond au casque / écran verrouillé -->
+        <service
+            android:name=".ServiceLecture"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

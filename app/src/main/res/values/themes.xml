@@ -1,0 +1,7 @@
+<resources>
+    <!-- Thème clair sans barre de titre : la mise en page dessine elle-même son en-tête (bleu nuit) -->
+    <style name="Theme.ShuPlay" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#0A1E3D</item>
+        <item name="android:navigationBarColor">#0A1E3D</item>
+    </style>
+</resources>

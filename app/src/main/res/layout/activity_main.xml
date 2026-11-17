@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Écran unique de ShuPlay : lecteur (haut), actions (pictogramme + légende, règle 15), liste de lecture, version -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#F3F5F9">
+
+    <!-- En-tête bleu nuit avec le titre de la piste en cours -->
+    <LinearLayout android:id="@+id/entete" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:background="#0A1E3D" android:paddingHorizontal="16dp" android:paddingVertical="8dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ShuPlay"
+            android:textColor="#FF7A0A" android:textSize="18sp" android:textStyle="bold" />
+        <TextView android:id="@+id/titre_en_cours" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Aucune piste" android:textColor="#FFFFFF" android:textSize="14sp" android:maxLines="1" android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- Lecteur : image de la vidéo + commandes standard (lecture, pause, précédent, suivant, retour / avance 10 s, barre de progression, plein écran, réglages vitesse / audio / sous-titres) -->
+    <androidx.media3.ui.PlayerView android:id="@+id/vue_lecteur" android:layout_width="match_parent" android:layout_height="220dp"
+        android:background="#000000" app:resize_mode="fit" app:show_buffering="when_playing" app:show_shuffle_button="true" app:show_subtitle_button="true"
+        app:use_controller="true" xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+    <LinearLayout android:id="@+id/panneau" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="vertical">
+        <!-- Actions : toujours un pictogramme + une légende courte -->
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:background="#FFFFFF">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="4dp">
+                <TextView android:id="@+id/act_fichiers" style="@style/Action" android:text="Fichiers" android:drawableTop="@drawable/ic_fichiers" android:contentDescription="Ajouter des fichiers du téléphone" />
+                <TextView android:id="@+id/act_lien" style="@style/Action" android:text="Lien" android:drawableTop="@drawable/ic_lien" android:contentDescription="Ajouter un lien direct" />
+                <TextView android:id="@+id/act_aleatoire" style="@style/Action" android:text="Aléatoire" android:drawableTop="@drawable/ic_aleatoire" android:contentDescription="Lecture aléatoire" />
+                <TextView android:id="@+id/act_repeter" style="@style/Action" android:text="Répéter" android:drawableTop="@drawable/ic_repeter" android:contentDescription="Mode de répétition" />
+                <TextView android:id="@+id/act_enregistrer" style="@style/Action" android:text="Enregistrer" android:drawableTop="@drawable/ic_enregistrer" android:contentDescription="Enregistrer cette liste" />
+                <TextView android:id="@+id/act_listes" style="@style/Action" android:text="Mes Listes" android:drawableTop="@drawable/ic_listes" android:contentDescription="Ouvrir une liste enregistrée" />
+                <TextView android:id="@+id/act_vider" style="@style/Action" android:text="Vider" android:drawableTop="@drawable/ic_vider" android:contentDescription="Vider la liste de lecture" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView android:id="@+id/etat_liste" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp"
+            android:text="Liste de lecture vide : ajoutez des fichiers ou un lien." android:textColor="#56627A" android:textSize="12sp" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/liste" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+        <TextView android:id="@+id/version" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="6dp"
+            android:gravity="center" android:textColor="#56627A" android:textSize="11sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Une piste de la liste : numéro, titre, monter / descendre / retirer (pictogrammes avec description) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/ligne"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+    android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="4dp" android:minHeight="52dp">
+    <TextView android:id="@+id/numero" android:layout_width="28dp" android:layout_height="wrap_content" android:gravity="end" android:paddingEnd="8dp"
+        android:textSize="13sp" android:textStyle="bold" android:textColor="#03316E" />
+    <TextView android:id="@+id/titre" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+        android:textSize="15sp" android:maxLines="2" android:ellipsize="end" android:textColor="#0A1E3D" />
+    <ImageView android:id="@+id/monter" android:layout_width="40dp" android:layout_height="48dp" android:padding="8dp" android:src="@drawable/ic_monter"
+        android:contentDescription="Monter dans la liste" android:background="?android:attr/selectableItemBackground" />
+    <ImageView android:id="@+id/descendre" android:layout_width="40dp" android:layout_height="48dp" android:padding="8dp" android:src="@drawable/ic_descendre"
+        android:contentDescription="Descendre dans la liste" android:background="?android:attr/selectableItemBackground" />
+    <ImageView android:id="@+id/retirer" android:layout_width="40dp" android:layout_height="48dp" android:padding="8dp" android:src="@drawable/ic_supprimer"
+        android:contentDescription="Retirer de la liste" android:background="?android:attr/selectableItemBackground" />
+</LinearLayout>
